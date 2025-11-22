@@ -1,0 +1,30 @@
+{
+  "name": "fhevm-examples-generator",
+  "version": "1.0.0",
+  "description": "Tooling for generating standalone FHEVM example repositories and documentation",
+  "scripts": {
+    "create-example": "node scripts/create-fhevm-example.js",
+    "generate-docs": "node scripts/generate-docs.js",
+    "generate-all-docs": "node scripts/generate-docs.js --all",
+    "help:create": "node scripts/create-fhevm-example.js --help",
+    "help:docs": "node scripts/generate-docs.js --help"
+  },
+  "keywords": [
+    "fhevm",
+    "zama",
+    "encryption",
+    "blockchain",
+    "examples",
+    "documentation",
+    "generator"
+  ],
+  "author": "Zama",
+  "license": "BSD-3-Clause-Clear",
+  "engines": {
+    "node": ">=20"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zama-ai/fhevm-examples"
+  }
+}

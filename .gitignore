@@ -1,0 +1,7 @@
+.env
+test-output/
+.claude/
+.vscode/
+.DS_Store
+.idea/
+CLAUDE.md
