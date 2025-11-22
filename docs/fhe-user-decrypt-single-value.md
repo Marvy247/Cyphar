@@ -1,6 +1,4 @@
-This example demonstrates the FHE user decryption mechanism with a single value.
-
-User decryption is a mechanism that allows specific users to decrypt encrypted values while keeping them hidden from others. Unlike public decryption where decrypted values become visible to everyone, user decryption maintains privacy by only allowing authorized users with the proper permissions to view the data. While permissions are granted onchain through smart contracts, the actual **decryption call occurs off-chain in the frontend application**.
+This example demonstrates the FHE user decryption mechanism and highlights common pitfalls developers may encounter.
 
 {% hint style="info" %}
 To run this example correctly, make sure the files are placed in the following directories:
@@ -74,9 +72,9 @@ contract UserDecryptSingleValue is ZamaEthereumConfig {
 
 {% tab title="UserDecryptSingleValue.ts" %}
 
-```ts
+```typescript
 import { UserDecryptSingleValue, UserDecryptSingleValue__factory } from "../../../types";
-import type { Signers } from "../../types";
+import type { Signers } from "../../../types";
 import { FhevmType, HardhatFhevmRuntimeEnvironment } from "@fhevm/hardhat-plugin";
 import { HardhatEthersSigner } from "@nomicfoundation/hardhat-ethers/signers";
 import { expect } from "chai";

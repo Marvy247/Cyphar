@@ -1,4 +1,4 @@
-This example demonstrates how to build an confidential counter using FHEVM, in comparison to a simple counter.
+This example demonstrates how to build a confidential counter using FHEVM, in comparison to a simple counter.
 
 {% hint style="info" %}
 To run this example correctly, make sure the files are placed in the following directories:
@@ -8,109 +8,6 @@ To run this example correctly, make sure the files are placed in the following d
 
 This ensures Hardhat can compile and test your contracts as expected.
 {% endhint %}
-
-## A simple counter
-
-{% tabs %}
-
-{% tab title="counter.sol" %}
-
-```solidity
-// SPDX-License-Identifier: BSD-3-Clause-Clear
-pragma solidity ^0.8.24;
-
-/// @title A simple counter contract
-contract Counter {
-  uint32 private _count;
-
-  /// @notice Returns the current count
-  function getCount() external view returns (uint32) {
-    return _count;
-  }
-
-  /// @notice Increments the counter by a specific value
-  function increment(uint32 value) external {
-    _count += value;
-  }
-
-  /// @notice Decrements the counter by a specific value
-  function decrement(uint32 value) external {
-    require(_count >= value, "Counter: cannot decrement below zero");
-    _count -= value;
-  }
-}
-```
-
-{% endtab %}
-
-{% tab title="counter.ts" %}
-
-```ts
-import { Counter, Counter__factory } from "../types";
-import { HardhatEthersSigner } from "@nomicfoundation/hardhat-ethers/signers";
-import { expect } from "chai";
-import { ethers } from "hardhat";
-
-type Signers = {
-  deployer: HardhatEthersSigner;
-  alice: HardhatEthersSigner;
-  bob: HardhatEthersSigner;
-};
-
-async function deployFixture() {
-  const factory = (await ethers.getContractFactory("Counter")) as Counter__factory;
-  const counterContract = (await factory.deploy()) as Counter;
-  const counterContractAddress = await counterContract.getAddress();
-
-  return { counterContract, counterContractAddress };
-}
-
-describe("Counter", function () {
-  let signers: Signers;
-  let counterContract: Counter;
-
-  before(async function () {
-    const ethSigners: HardhatEthersSigner[] = await ethers.getSigners();
-    signers = { deployer: ethSigners[0], alice: ethSigners[1], bob: ethSigners[2] };
-  });
-
-  beforeEach(async () => {
-    ({ counterContract } = await deployFixture());
-  });
-
-  it("count should be zero after deployment", async function () {
-    const count = await counterContract.getCount();
-    console.log(`Counter.getCount() === ${count}`);
-    // Expect initial count to be 0 after deployment
-    expect(count).to.eq(0);
-  });
-
-  it("increment the counter by 1", async function () {
-    const countBeforeInc = await counterContract.getCount();
-    const tx = await counterContract.connect(signers.alice).increment(1);
-    await tx.wait();
-    const countAfterInc = await counterContract.getCount();
-    expect(countAfterInc).to.eq(countBeforeInc + 1n);
-  });
-
-  it("decrement the counter by 1", async function () {
-    // First increment, count becomes 1
-    let tx = await counterContract.connect(signers.alice).increment(1);
-    await tx.wait();
-    // Then decrement, count goes back to 0
-    tx = await counterContract.connect(signers.alice).decrement(1);
-    await tx.wait();
-    const count = await counterContract.getCount();
-    expect(count).to.eq(0);
-  });
-});
-```
-
-{% endtab %}
-
-{% endtabs %}
-
-## An FHE counter
 
 {% tabs %}
 
@@ -162,12 +59,12 @@ contract FHECounter is ZamaEthereumConfig {
 
 {% tab title="FHECounter.ts" %}
 
-```ts
-import { FHECounter, FHECounter__factory } from "../types";
-import { FhevmType } from "@fhevm/hardhat-plugin";
+```typescript
 import { HardhatEthersSigner } from "@nomicfoundation/hardhat-ethers/signers";
-import { expect } from "chai";
 import { ethers, fhevm } from "hardhat";
+import { FHECounter, FHECounter__factory } from "../types";
+import { expect } from "chai";
+import { FhevmType } from "@fhevm/hardhat-plugin";
 
 type Signers = {
   deployer: HardhatEthersSigner;
@@ -193,7 +90,13 @@ describe("FHECounter", function () {
     signers = { deployer: ethSigners[0], alice: ethSigners[1], bob: ethSigners[2] };
   });
 
-  beforeEach(async () => {
+  beforeEach(async function () {
+    // Check whether the tests are running against an FHEVM mock environment
+    if (!fhevm.isMock) {
+      console.warn(`This hardhat test suite cannot run on Sepolia Testnet`);
+      this.skip();
+    }
+
     ({ fheCounterContract, fheCounterContractAddress } = await deployFixture());
   });
 
@@ -251,16 +154,17 @@ describe("FHECounter", function () {
     await tx.wait();
 
     const encryptedCountAfterDec = await fheCounterContract.getCount();
-    const clearCountAfterDec = await fhevm.userDecryptEuint(
+    const clearCountAfterInc = await fhevm.userDecryptEuint(
       FhevmType.euint32,
       encryptedCountAfterDec,
       fheCounterContractAddress,
       signers.alice,
     );
 
-    expect(clearCountAfterDec).to.eq(0);
+    expect(clearCountAfterInc).to.eq(0);
   });
 });
+
 ```
 
 {% endtab %}

@@ -5,7 +5,7 @@
  *
  * Usage: node scripts/generate-docs.js <example-name> [options]
  *
- * Example: node scripts/generate-docs.js fhe-counter --output examples/
+ * Example: node scripts/generate-docs.js fhe-counter --output docs/
  */
 
 const fs = require('fs');
@@ -39,13 +39,13 @@ function error(message) {
 }
 
 // Example configurations
-const EXAMPLES_CONFIG = {
+const docs_CONFIG = {
   'fhe-counter': {
     title: 'FHE Counter',
     description: 'This example demonstrates how to build a confidential counter using FHEVM, in comparison to a simple counter.',
     contract: 'contracts/basic/FHECounter.sol',
-    test: 'test/FHECounter.ts',
-    output: 'examples/fhe-counter.md',
+    test: 'test/basic/FHECounter.ts',
+    output: 'docs/fhe-counter.md',
     category: 'Basic',
   },
   'encrypt-single-value': {
@@ -53,7 +53,7 @@ const EXAMPLES_CONFIG = {
     description: 'This example demonstrates the FHE encryption mechanism and highlights a common pitfall developers may encounter.',
     contract: 'contracts/basic/encrypt/EncryptSingleValue.sol',
     test: 'test/basic/encrypt/EncryptSingleValue.ts',
-    output: 'examples/fhe-encrypt-single-value.md',
+    output: 'docs/fhe-encrypt-single-value.md',
     category: 'Basic - Encryption',
   },
   'encrypt-multiple-values': {
@@ -61,7 +61,7 @@ const EXAMPLES_CONFIG = {
     description: 'This example shows how to encrypt and handle multiple values in a single transaction.',
     contract: 'contracts/basic/encrypt/EncryptMultipleValues.sol',
     test: 'test/basic/encrypt/EncryptMultipleValues.ts',
-    output: 'examples/fhe-encrypt-multiple-values.md',
+    output: 'docs/fhe-encrypt-multiple-values.md',
     category: 'Basic - Encryption',
   },
   'user-decrypt-single-value': {
@@ -69,7 +69,7 @@ const EXAMPLES_CONFIG = {
     description: 'This example demonstrates the FHE user decryption mechanism and highlights common pitfalls developers may encounter.',
     contract: 'contracts/basic/decrypt/UserDecryptSingleValue.sol',
     test: 'test/basic/decrypt/UserDecryptSingleValue.ts',
-    output: 'examples/fhe-user-decrypt-single-value.md',
+    output: 'docs/fhe-user-decrypt-single-value.md',
     category: 'Basic - Decryption',
   },
   'user-decrypt-multiple-values': {
@@ -77,33 +77,25 @@ const EXAMPLES_CONFIG = {
     description: 'This example shows how to decrypt multiple encrypted values for a user.',
     contract: 'contracts/basic/decrypt/UserDecryptMultipleValues.sol',
     test: 'test/basic/decrypt/UserDecryptMultipleValues.ts',
-    output: 'examples/fhe-user-decrypt-multiple-values.md',
+    output: 'docs/fhe-user-decrypt-multiple-values.md',
     category: 'Basic - Decryption',
   },
   'fhe-add': {
     title: 'FHE Add Operation',
     description: 'This example demonstrates how to perform addition operations on encrypted values.',
     contract: 'contracts/basic/fhe-operations/FHEAdd.sol',
-    test: 'test/basic/fhe-operators/FHEAdd.ts',
-    output: 'examples/fheadd.md',
+    test: 'test/basic/fhe-operations/FHEAdd.ts',
+    output: 'docs/fheadd.md',
     category: 'Basic - FHE Operations',
   },
   'fhe-if-then-else': {
     title: 'FHE If-Then-Else',
     description: 'This example shows conditional operations on encrypted values using FHE.',
     contract: 'contracts/basic/fhe-operations/FHEIfThenElse.sol',
-    test: 'test/basic/fhe-operators/FHEIfThenElse.ts',
-    output: 'examples/fheifthenelse.md',
+    test: 'test/basic/fhe-operations/FHEIfThenElse.ts',
+    output: 'docs/fheifthenelse.md',
     category: 'Basic - FHE Operations',
-  },
-  'blind-auction': {
-    title: 'Blind Auction',
-    description: 'A sealed-bid auction implementation using FHEVM for confidential bids.',
-    contract: 'contracts/auctions/BlindAuction.sol',
-    test: 'test/blindAuction/BlindAuction.ts',
-    output: 'examples/sealed-bid-auction.md',
-    category: 'Advanced',
-  },
+  }
 };
 
 function readFile(filePath) {
@@ -165,7 +157,7 @@ function generateGitBookMarkdown(config, contractContent, testContent) {
 }
 
 function updateSummary(exampleName, config) {
-  const summaryPath = path.join(process.cwd(), 'examples', 'SUMMARY.md');
+  const summaryPath = path.join(process.cwd(), 'docs', 'SUMMARY.md');
 
   if (!fs.existsSync(summaryPath)) {
     log('Creating new SUMMARY.md', 'yellow');
@@ -214,10 +206,10 @@ function updateSummary(exampleName, config) {
 }
 
 function generateDocs(exampleName, options = {}) {
-  const config = EXAMPLES_CONFIG[exampleName];
+  const config = docs_CONFIG[exampleName];
 
   if (!config) {
-    error(`Unknown example: ${exampleName}\n\nAvailable examples:\n${Object.keys(EXAMPLES_CONFIG).map(k => `  - ${k}`).join('\n')}`);
+    error(`Unknown example: ${exampleName}\n\nAvailable docs:\n${Object.keys(docs_CONFIG).map(k => `  - ${k}`).join('\n')}`);
   }
 
   info(`Generating documentation for: ${config.title}`);
@@ -251,12 +243,12 @@ function generateDocs(exampleName, options = {}) {
 }
 
 function generateAllDocs() {
-  info('Generating documentation for all examples...\n');
+  info('Generating documentation for all docs...\n');
 
   let successCount = 0;
   let errorCount = 0;
 
-  for (const exampleName of Object.keys(EXAMPLES_CONFIG)) {
+  for (const exampleName of Object.keys(docs_CONFIG)) {
     try {
       generateDocs(exampleName, { noSummary: true });
       successCount++;
@@ -268,8 +260,8 @@ function generateAllDocs() {
 
   // Update summary once at the end
   info('\nUpdating SUMMARY.md...');
-  for (const exampleName of Object.keys(EXAMPLES_CONFIG)) {
-    const config = EXAMPLES_CONFIG[exampleName];
+  for (const exampleName of Object.keys(docs_CONFIG)) {
+    const config = docs_CONFIG[exampleName];
     updateSummary(exampleName, config);
   }
 
@@ -288,14 +280,14 @@ function main() {
   if (args.length === 0 || args[0] === '--help' || args[0] === '-h') {
     log('FHEVM Documentation Generator', 'cyan');
     log('\nUsage: node scripts/generate-docs.js <example-name> | --all\n');
-    log('Available examples:', 'yellow');
-    Object.entries(EXAMPLES_CONFIG).forEach(([name, config]) => {
+    log('Available docs:', 'yellow');
+    Object.entries(docs_CONFIG).forEach(([name, config]) => {
       log(`  ${name}`, 'green');
       log(`    ${config.title} - ${config.category}`, 'reset');
     });
     log('\nOptions:', 'yellow');
-    log('  --all    Generate documentation for all examples');
-    log('\nExamples:', 'yellow');
+    log('  --all    Generate documentation for all docs');
+    log('\ndocs:', 'yellow');
     log('  node scripts/generate-docs.js fhe-counter');
     log('  node scripts/generate-docs.js --all\n');
     process.exit(0);

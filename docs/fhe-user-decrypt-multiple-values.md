@@ -1,6 +1,4 @@
-This example demonstrates the FHE user decryption mechanism with multiple values.
-
-User decryption is a mechanism that allows specific users to decrypt encrypted values while keeping them hidden from others. Unlike public decryption where decrypted values become visible to everyone, user decryption maintains privacy by only allowing authorized users with the proper permissions to view the data. While permissions are granted onchain through smart contracts, the actual **decryption call occurs off-chain in the frontend application**.
+This example shows how to decrypt multiple encrypted values for a user.
 
 {% hint style="info" %}
 To run this example correctly, make sure the files are placed in the following directories:
@@ -71,7 +69,7 @@ contract UserDecryptMultipleValues is ZamaEthereumConfig {
 
 {% tab title="UserDecryptMultipleValues.ts" %}
 
-```ts
+```typescript
 import { UserDecryptMultipleValues, UserDecryptMultipleValues__factory } from "../../../types";
 import type { Signers } from "../../types";
 import { HardhatFhevmRuntimeEnvironment } from "@fhevm/hardhat-plugin";
