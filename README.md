@@ -33,10 +33,10 @@ npm run test
 
 ```bash
 # Using npm scripts (recommended)
-npm run create-category basic ./my-basic-examples
+npm run create-category basic ./test-output/my-basic-examples
 
 # Or directly
-ts-node scripts/create-fhevm-category.ts basic ./my-basic-examples
+ts-node scripts/create-fhevm-category.ts basic ./test-output/my-basic-examples
 
 # Available categories: basic, auctions, openzeppelin, games
 npm run help:category  # See all categories
