@@ -17,7 +17,7 @@
 
 ---
 
-## 📊 Project Overview
+##  Project Overview
 
 ```mermaid
 graph TB
@@ -44,20 +44,20 @@ graph TB
     style D fill:#F59E0B,stroke:#D97706,color:#fff
 ```
 
-## 🎯 What Makes Cyphar Special
+##  What Makes Cyphar Special
 
 Cyphar isn't just another example repository. It's a **production-grade automation system** designed to:
 
 - ⚡ **Generate standalone repos** in seconds with one command
-- 🏗️ **Intelligent scaffolding** that understands contract structure
-- 📚 **Auto-generate documentation** from code annotations
-- 🔧 **Production-ready** OpenZeppelin confidential contracts
-- 🎓 **Educational focus** with anti-patterns and best practices
-- 🚀 **Future-proof** architecture for easy maintenance
+-  **Intelligent scaffolding** that understands contract structure
+-  **Auto-generate documentation** from code annotations
+-  **Production-ready** OpenZeppelin confidential contracts
+-  **Educational focus** with anti-patterns and best practices
+-  **Future-proof** architecture for easy maintenance
 
 ---
 
-## 🌟 Features
+##  Features
 
 ### 🤖 Intelligent Automation
 
@@ -71,7 +71,7 @@ flowchart LR
     F --> G[Create Deployment]
     G --> H[Generate README]
     H --> I[Configure Package]
-    I --> J[✅ Standalone Repo]
+    I --> J[ Standalone Repo]
     
     style A fill:#E0E7FF
     style J fill:#10B981,color:#fff
@@ -122,7 +122,7 @@ sequenceDiagram
 
 ---
 
-## 🚀 Quick Start
+##  Quick Start
 
 ### Prerequisites
 
@@ -178,7 +178,7 @@ npm run generate-all-docs
 
 ---
 
-## 📚 Available Examples
+##  Available Examples
 
 ### 🔰 Basic Examples (7)
 
@@ -245,7 +245,7 @@ graph LR
 | `input-proof` | Complete guide to input proofs and their security role |
 | `handles` | Understanding encrypted handles and symbolic execution |
 
-### 🏆 OpenZeppelin Suite (4)
+###  OpenZeppelin Suite (4)
 
 Production-ready confidential contracts:
 
@@ -286,7 +286,7 @@ graph TD
 | `vesting-wallet-confidential` | Time-locked token vesting with cliff and factory |
 | `confidential-swap` | Privacy-preserving AMM for confidential token swaps |
 
-### 🎯 Advanced Examples (2)
+###  Advanced Examples (2)
 
 | Example | Description |
 |---------|-------------|
@@ -295,7 +295,7 @@ graph TD
 
 ---
 
-## 🏗️ Architecture
+##  Architecture
 
 ### System Architecture
 
@@ -729,17 +729,11 @@ This project is licensed under the BSD-3-Clause-Clear License - see the [LICENSE
 
 ---
 
-## 📞 Support
-
-- **Issues**: [GitHub Issues](https://github.com/[username]/cyphar/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/[username]/cyphar/discussions)
-- **Discord**: [Zama Discord](https://discord.com/invite/zama)
-
 ---
 
 <div align="center">
 
-**Built with ❤️ for the FHEVM Community**
+**Built for the FHEVM Community**
 
 ⭐ Star this repo if Cyphar helps your FHEVM development!
 
