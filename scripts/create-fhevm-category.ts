@@ -89,28 +89,28 @@ const CATEGORIES: Record<string, CategoryConfig> = {
   },
   openzeppelin: {
     name: 'OpenZeppelin Confidential Contracts',
-    description: 'ERC7984 and confidential token implementations using OpenZeppelin library',
+    description: 'Production-grade confidential token implementations including ERC7984, token wrapping, vesting, and DeFi primitives',
     contracts: [
       {
-        path: 'contracts/openzeppelin-confidential-contracts/ERC7984Example.sol',
-        test: 'test/openzeppelin-confidential-contracts/confidentialToken/confToken.test.ts',
-        fixture: 'test/openzeppelin-confidential-contracts/confidentialToken/confToken.fixture.ts',
+        path: 'contracts/openzeppelin/ERC7984Example.sol',
+        test: 'test/openzeppelin/ERC7984Example.ts',
       },
       {
-        path: 'contracts/openzeppelin-confidential-contracts/ERC7984ERC20WrapperMock.sol',
-        test: 'test/openzeppelin-confidential-contracts/ERC7984Wrapper.test.ts',
+        path: 'contracts/openzeppelin/ERC7984WrapperExample.sol',
+        test: 'test/openzeppelin/ERC7984WrapperExample.ts',
       },
       {
-        path: 'contracts/openzeppelin-confidential-contracts/SwapERC7984ToERC20.sol',
-        test: 'test/openzeppelin-confidential-contracts/ERC7984Wrapper.test.ts',
+        path: 'contracts/openzeppelin/VestingWalletConfidentialExample.sol',
+        test: 'test/openzeppelin/VestingWalletConfidentialExample.ts',
       },
       {
-        path: 'contracts/openzeppelin-confidential-contracts/SwapERC7984ToERC7984.sol',
-        test: 'test/openzeppelin-confidential-contracts/ERC7984Wrapper.test.ts',
+        path: 'contracts/openzeppelin/ConfidentialSwapExample.sol',
+        test: 'test/openzeppelin/ConfidentialSwapExample.ts',
       },
     ],
     additionalDeps: {
-      '@openzeppelin/confidential-contracts': '^0.1.0',
+      '@openzeppelin/contracts': '^5.0.0',
+      '@openzeppelin/contracts-upgradeable': '^5.0.0',
     },
   },
   games: {

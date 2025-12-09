@@ -108,8 +108,16 @@ bounty-gen/
 - **blind-auction** - Sealed-bid auction with confidential bids
 - **confidential-dutch-auction** - Dutch auction with encrypted prices
 
-### OpenZeppelin Integration
-- **erc7984-example** - Confidential token standard implementation
+### Required Core Concepts (Educational Examples)
+- **access-control** - FHE access control patterns (FHE.allow, FHE.allowTransient, FHE.allowThis)
+- **input-proof** - Complete guide to input proofs - what they are, why needed, how to use
+- **handles** - Understanding encrypted handles - generation, lifecycle, symbolic execution
+
+### OpenZeppelin Confidential Contracts (Production-Ready Examples)
+- **erc7984-example** - ERC7984 confidential token standard with encrypted balances and transfers
+- **erc7984-wrapper** - Wrap/unwrap ERC20 ↔ ERC7984 with gateway-based decryption
+- **vesting-wallet-confidential** - Time-locked token vesting with cliff and linear release
+- **confidential-swap** - Privacy-preserving AMM for confidential token swaps
 
 ## Core Concepts
 

@@ -110,6 +110,64 @@ const EXAMPLES_CONFIG: Record<string, DocsConfig> = {
     test: 'test/basic/fhe-operations/FHEIfThenElse.ts',
     output: 'docs/fheifthenelse.md',
     category: 'Basic - FHE Operations',
+  },
+  // Additional Required Examples
+  'access-control': {
+    title: 'Access Control in FHEVM',
+    description: 'This example demonstrates FHE access control mechanisms including FHE.allow(), FHE.allowTransient(), and permission management patterns.',
+    contract: 'contracts/basic/AccessControlExample.sol',
+    test: 'test/basic/AccessControlExample.ts',
+    output: 'docs/access-control.md',
+    category: 'Advanced - Access Control',
+  },
+  'input-proof': {
+    title: 'Understanding Input Proofs',
+    description: 'This example provides a comprehensive guide to input proofs - what they are, why they are needed, and how to use them correctly.',
+    contract: 'contracts/basic/InputProofExample.sol',
+    test: 'test/basic/InputProofExample.ts',
+    output: 'docs/input-proof.md',
+    category: 'Advanced - Security',
+  },
+  'handles': {
+    title: 'Understanding Encrypted Handles',
+    description: 'This example explains encrypted value handles in depth - how they are generated, their lifecycle, symbolic execution, and different handle types.',
+    contract: 'contracts/basic/HandlesExample.sol',
+    test: 'test/basic/HandlesExample.ts',
+    output: 'docs/handles.md',
+    category: 'Advanced - Core Concepts',
+  },
+  // OpenZeppelin Confidential Contracts Examples
+  'erc7984-example': {
+    title: 'ERC7984 Confidential Token',
+    description: 'This example demonstrates the ERC7984 standard for confidential tokens with encrypted balances, transfers, and operator patterns.',
+    contract: 'contracts/openzeppelin/ERC7984Example.sol',
+    test: 'test/openzeppelin/ERC7984Example.ts',
+    output: 'docs/erc7984-example.md',
+    category: 'OpenZeppelin - Tokens',
+  },
+  'erc7984-wrapper': {
+    title: 'ERC7984 Wrapper (ERC20 ↔ Confidential)',
+    description: 'This example shows how to wrap standard ERC20 tokens into confidential ERC7984 tokens and unwrap them using a gateway.',
+    contract: 'contracts/openzeppelin/ERC7984WrapperExample.sol',
+    test: 'test/openzeppelin/ERC7984WrapperExample.ts',
+    output: 'docs/erc7984-wrapper.md',
+    category: 'OpenZeppelin - Tokens',
+  },
+  'vesting-wallet-confidential': {
+    title: 'Confidential Vesting Wallet',
+    description: 'This example demonstrates time-locked confidential token vesting with cliff periods and linear release schedules.',
+    contract: 'contracts/openzeppelin/VestingWalletConfidentialExample.sol',
+    test: 'test/openzeppelin/VestingWalletConfidentialExample.ts',
+    output: 'docs/vesting-wallet-confidential.md',
+    category: 'OpenZeppelin - Finance',
+  },
+  'confidential-swap': {
+    title: 'Confidential Token Swap (AMM)',
+    description: 'This example shows a privacy-preserving automated market maker for swapping confidential tokens without revealing trade sizes.',
+    contract: 'contracts/openzeppelin/ConfidentialSwapExample.sol',
+    test: 'test/openzeppelin/ConfidentialSwapExample.ts',
+    output: 'docs/confidential-swap.md',
+    category: 'OpenZeppelin - DeFi',
   }
 };
 

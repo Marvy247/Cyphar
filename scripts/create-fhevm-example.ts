@@ -105,11 +105,42 @@ const EXAMPLES_MAP: Record<string, ExampleConfig> = {
     test: 'test/confidentialDutchAuction/ConfidentialDutchAuction.ts',
     description: 'Dutch auction with encrypted prices',
   },
+  // Additional Required Examples
+  'access-control': {
+    contract: 'contracts/basic/AccessControlExample.sol',
+    test: 'test/basic/AccessControlExample.ts',
+    description: 'FHE access control patterns - FHE.allow(), FHE.allowTransient(), and permission management',
+  },
+  'input-proof': {
+    contract: 'contracts/basic/InputProofExample.sol',
+    test: 'test/basic/InputProofExample.ts',
+    description: 'Complete guide to input proofs - what they are, why needed, and how to use them correctly',
+  },
+  'handles': {
+    contract: 'contracts/basic/HandlesExample.sol',
+    test: 'test/basic/HandlesExample.ts',
+    description: 'Understanding encrypted handles - generation, lifecycle, symbolic execution, and handle types',
+  },
+  // OpenZeppelin Confidential Contracts Examples
   'erc7984-example': {
-    contract: 'contracts/openzeppelin-confidential-contracts/ERC7984Example.sol',
-    test: 'test/openzeppelin-confidential-contracts/confidentialToken/confToken.test.ts',
-    testFixture: 'test/openzeppelin-confidential-contracts/confidentialToken/confToken.fixture.ts',
-    description: 'ERC7984 confidential token standard implementation',
+    contract: 'contracts/openzeppelin/ERC7984Example.sol',
+    test: 'test/openzeppelin/ERC7984Example.ts',
+    description: 'ERC7984 confidential token standard - basic implementation with encrypted balances and transfers',
+  },
+  'erc7984-wrapper': {
+    contract: 'contracts/openzeppelin/ERC7984WrapperExample.sol',
+    test: 'test/openzeppelin/ERC7984WrapperExample.ts',
+    description: 'Wrap standard ERC20 tokens into confidential ERC7984 tokens with gateway-based unwrapping',
+  },
+  'vesting-wallet-confidential': {
+    contract: 'contracts/openzeppelin/VestingWalletConfidentialExample.sol',
+    test: 'test/openzeppelin/VestingWalletConfidentialExample.ts',
+    description: 'Time-locked confidential token vesting with cliff period and linear release schedule',
+  },
+  'confidential-swap': {
+    contract: 'contracts/openzeppelin/ConfidentialSwapExample.sol',
+    test: 'test/openzeppelin/ConfidentialSwapExample.ts',
+    description: 'Privacy-preserving automated market maker (AMM) for swapping confidential tokens',
   },
 };
 

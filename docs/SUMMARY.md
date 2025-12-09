@@ -12,3 +12,7 @@
   - [User decrypt multiple values](fhe-user-decrypt-multiple-values.md)
   - [Public Decrypt single value]()
   - [Public Decrypt multiple values]()
+
+## OpenZeppelin - Finance
+
+- [Confidential Vesting Wallet](vesting-wallet-confidential.md)
