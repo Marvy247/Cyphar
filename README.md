@@ -1,4 +1,6 @@
-# FHEVM Examples Generator
+# Cyphar
+
+**Production-Grade FHEVM Example Hub with Intelligent Automation**
 
 A comprehensive system for creating standalone FHEVM (Fully Homomorphic Encryption Virtual Machine) example repositories with automated documentation generation.
 

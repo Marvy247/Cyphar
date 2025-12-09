@@ -1,7 +1,7 @@
 {
-  "name": "fhevm-examples-generator",
+  "name": "cyphar",
   "version": "1.0.0",
-  "description": "Tooling for generating standalone FHEVM example repositories and documentation",
+  "description": "Cyphar - Production-grade FHEVM example hub with intelligent automation for confidential smart contracts",
   "scripts": {
     "create-example": "npx ts-node scripts/create-fhevm-example.ts",
     "create-category": "npx ts-node scripts/create-fhevm-category.ts",
